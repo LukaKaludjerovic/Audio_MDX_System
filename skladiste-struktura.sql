@@ -88,3 +88,10 @@ CREATE TABLE `pretplata` (
   CONSTRAINT `FK_Pretplata_IdKor` FOREIGN KEY (`IdKor`) REFERENCES `korisnik` (`IdKor`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `FK_Pretplata_IdVre` FOREIGN KEY (`IdVre`) REFERENCES `vreme` (`IdVre`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+DROP TABLE IF EXISTS `poslednja_izmena`;
+CREATE TABLE `poslednja_izmena` (
+  `Id` int NOT NULL AUTO_INCREMENT,
+  `Timestamp` datetime NOT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
