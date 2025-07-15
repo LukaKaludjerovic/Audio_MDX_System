@@ -62,7 +62,6 @@ CREATE TABLE `ocena` (
   `IdVla` int NOT NULL,
   `IdKat` int NOT NULL,
   `IdVre` int NOT NULL,
-  `MestoVlasnika` varchar(45) DEFAULT NULL,
   `Ocena` int DEFAULT NULL,
   PRIMARY KEY (`IdOce`),
   KEY `FK_Ocena_IdAud_idx` (`IdAud`),
