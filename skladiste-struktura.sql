@@ -24,11 +24,8 @@ CREATE TABLE `korisnik` (
 DROP TABLE IF EXISTS `audio`;
 CREATE TABLE `audio` (
   `IdAud` int NOT NULL AUTO_INCREMENT,
-  `IdKor` int DEFAULT NULL,
   `Trajanje` int DEFAULT NULL,
-  PRIMARY KEY (`IdAud`)  ,
-  KEY `FK_Audio_IdKor_idx` (`IdKor`),
-  CONSTRAINT `FK_Audio_IdKor` FOREIGN KEY (`IdKor`) REFERENCES `korisnik` (`IdKor`) ON DELETE RESTRICT ON UPDATE CASCADE
+  PRIMARY KEY (`IdAud`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 DROP TABLE IF EXISTS `kategorija`;
@@ -41,16 +38,19 @@ CREATE TABLE `kategorija` (
 DROP TABLE IF EXISTS `slusanje`;
 CREATE TABLE `slusanje` (
   `IdSlu` int NOT NULL AUTO_INCREMENT,
-  `IdAud` int NOT NULL,
   `IdKor` int NOT NULL,
+  `IdAud` int NOT NULL,
+  `IdVla` int NOT NULL,
   `IdVre` int NOT NULL,
   `Trajanje` int DEFAULT NULL,
   PRIMARY KEY (`IdSlu`),
   KEY `FK_Slusanje_IdAud_idx` (`IdAud`),
   KEY `FK_Slusanje_IdKor_idx` (`IdKor`),
+  KEY `FK_Slusanje_IdVla_idx` (`IdVla`),
   KEY `FK_Slusanje_IdVre_idx` (`IdVre`),
   CONSTRAINT `FK_Slusanje_IdAud` FOREIGN KEY (`IdAud`) REFERENCES `audio` (`IdAud`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `FK_Slusanje_IdKor` FOREIGN KEY (`IdKor`) REFERENCES `korisnik` (`IdKor`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `FK_Slusanje_IdVla` FOREIGN KEY (`IdVla`) REFERENCES `korisnik` (`IdKor`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `FK_Slusanje_IdVre` FOREIGN KEY (`IdVre`) REFERENCES `vreme` (`IdVre`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -59,6 +59,7 @@ CREATE TABLE `ocena` (
   `IdOce` int NOT NULL AUTO_INCREMENT,
   `IdKor` int NOT NULL,
   `IdAud` int NOT NULL,
+  `IdVla` int NOT NULL,
   `IdKat` int NOT NULL,
   `IdVre` int NOT NULL,
   `MestoVlasnika` varchar(45) DEFAULT NULL,
@@ -67,10 +68,12 @@ CREATE TABLE `ocena` (
   KEY `FK_Ocena_IdAud_idx` (`IdAud`),
   KEY `FK_Ocena_IdVre_idx` (`IdVre`),
   KEY `FK_Ocena_IdKat_idx` (`IdKat`),
-  KEY `FK_Ocena_IdKor` (`IdKor`),
+  KEY `FK_Ocena_IdKor_idx` (`IdKor`),
+  KEY `FK_Ocena_IdVla_idx` (`IdVla`),
   CONSTRAINT `FK_Ocena_IdAud` FOREIGN KEY (`IdAud`) REFERENCES `audio` (`IdAud`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `FK_Ocena_IdKat` FOREIGN KEY (`IdKat`) REFERENCES `kategorija` (`IdKat`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `FK_Ocena_IdKor` FOREIGN KEY (`IdKor`) REFERENCES `korisnik` (`IdKor`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `FK_Ocena_IdVla` FOREIGN KEY (`IdVla`) REFERENCES `korisnik` (`IdKor`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `FK_Ocena_IdVre` FOREIGN KEY (`IdVre`) REFERENCES `vreme` (`IdVre`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
