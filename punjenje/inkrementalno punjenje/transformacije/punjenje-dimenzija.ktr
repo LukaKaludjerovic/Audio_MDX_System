@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>punjenje-kocki</name>
+    <name>punjenje-dimenzija</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -427,9 +427,9 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2025/07/15 21:28:25.419</created_date>
+    <created_date>2025/07/16 19:43:50.328</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2025/07/15 21:28:25.419</modified_date>
+    <modified_date>2025/07/16 19:43:50.328</modified_date>
     <key_for_session_key>H4sIAAAAAAAA/wMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -468,157 +468,35 @@
     <index_tablespace/>
     <attributes>
       <attribute>
-        <code>EXTRA_OPTION_MYSQL.defaultFetchSize</code>
-        <attribute>500</attribute>
-      </attribute>
-      <attribute>
-        <code>EXTRA_OPTION_MYSQL.useCursorFetch</code>
-        <attribute>true</attribute>
-      </attribute>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>IS_CLUSTERED</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
         <code>PORT_NUMBER</code>
         <attribute>3306</attribute>
-      </attribute>
-      <attribute>
-        <code>PRESERVE_RESERVED_WORD_CASE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>QUOTE_ALL_FIELDS</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>STREAM_RESULTS</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>USE_POOLING</code>
-        <attribute>N</attribute>
       </attribute>
     </attributes>
   </connection>
   <order>
     <hop>
-      <from>ocena_operativna</from>
-      <to>vreme_ocena</to>
+      <from>korisnik_operativna</from>
+      <to>korisnik_skladiste</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>pretplata_operativna</from>
-      <to>vreme_pretplata</to>
+      <from>audio_operativna</from>
+      <to>audio_skladiste</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>vreme_ocena</from>
-      <to>ocena_skladiste</to>
+      <from>kategorija_operativna</from>
+      <to>kategorija_skladiste</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>vreme_pretplata</from>
-      <to>pretplata_skladiste</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>slusanje_operativna</from>
-      <to>vreme_slusanje</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>vreme_slusanje</from>
-      <to>slusanje_skladiste</to>
+      <from>vreme_operativna</from>
+      <to>vreme_skladiste</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>ocena_skladiste</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>MySQL_Skladiste</connection>
-    <schema/>
-    <table>ocena</table>
-    <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-      <field>
-        <column_name>IdKor</column_name>
-        <stream_name>IdKor</stream_name>
-      </field>
-      <field>
-        <column_name>IdAud</column_name>
-        <stream_name>IdAud</stream_name>
-      </field>
-      <field>
-        <column_name>IdVla</column_name>
-        <stream_name>IdVla</stream_name>
-      </field>
-      <field>
-        <column_name>IdKat</column_name>
-        <stream_name>IdKat</stream_name>
-      </field>
-      <field>
-        <column_name>IdVre</column_name>
-        <stream_name>IdVre</stream_name>
-      </field>
-      <field>
-        <column_name>Ocena</column_name>
-        <stream_name>Ocena</stream_name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>496</xloc>
-      <yloc>352</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>ocena_operativna</name>
+    <name>korisnik_operativna</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -629,21 +507,12 @@
       <schema_name/>
     </partitioning>
     <connection>MySQL_Operativna</connection>
-    <sql>SELECT 
-	o.IdKor, 
-	o.IdAud, 
-	a.IdKor AS IdVla, 
-	ak.IdKat, 
-	TIMESTAMP(CONCAT(
-		DATE_FORMAT(o.Datum, '%Y-%m-%d'), 
-		' ', 
-		TIME_FORMAT(o.Vreme, '%H:%i:%s')
-	)) as DatumVreme,  
-	o.Ocena
-FROM ocena o
-	JOIN audio a ON o.IdAud = a.IdAud
-	JOIN audio_kategorija ak ON o.IdAud = ak.IdAud
-</sql>
+    <sql>SELECT IdKor, Godiste, Pol, Mesto
+FROM korisnik k join mesto m on k.IdMes = m.IdMes
+WHERE k.PoslednjaIzmena > (
+	SELECT MAX(Timestamp)
+	FROM audio_snimci_skladiste.poslednja_izmena
+)</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -657,7 +526,7 @@ FROM ocena o
         <name>IdKor</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>ocena_operativna</origin>
+        <origin>korisnik_operativna</origin>
         <comments>IdKor</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>.</decimal_symbol>
@@ -677,11 +546,11 @@ FROM ocena o
       <value-meta>
         <type>Integer</type>
         <storagetype>normal</storagetype>
-        <name>IdAud</name>
+        <name>Godiste</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>ocena_operativna</origin>
-        <comments>IdAud</comments>
+        <origin>korisnik_operativna</origin>
+        <comments>Godiste</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>.</decimal_symbol>
         <grouping_symbol>,</grouping_symbol>
@@ -698,59 +567,13 @@ FROM ocena o
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Integer</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
-        <name>IdVla</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>ocena_operativna</origin>
-        <comments>IdVla</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>.</decimal_symbol>
-        <grouping_symbol>,</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Belgrade</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>IdKat</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>ocena_operativna</origin>
-        <comments>IdKat</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>.</decimal_symbol>
-        <grouping_symbol>,</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Belgrade</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Date</type>
-        <storagetype>normal</storagetype>
-        <name>DatumVreme</name>
-        <length>0</length>
+        <name>Pol</name>
+        <length>45</length>
         <precision>-1</precision>
-        <origin>ocena_operativna</origin>
-        <comments>DatumVreme</comments>
+        <origin>korisnik_operativna</origin>
+        <comments>Pol</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
         <grouping_symbol>,</grouping_symbol>
@@ -767,14 +590,14 @@ FROM ocena o
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Integer</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
-        <name>Ocena</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>ocena_operativna</origin>
-        <comments>Ocena</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
+        <name>Mesto</name>
+        <length>45</length>
+        <precision>-1</precision>
+        <origin>korisnik_operativna</origin>
+        <comments>Mesto</comments>
+        <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
         <grouping_symbol>,</grouping_symbol>
         <currency_symbol/>
@@ -799,13 +622,13 @@ FROM ocena o
       </output>
     </remotesteps>
     <GUI>
-      <xloc>496</xloc>
-      <yloc>80</yloc>
+      <xloc>320</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>pretplata_operativna</name>
+    <name>audio_operativna</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -816,16 +639,12 @@ FROM ocena o
       <schema_name/>
     </partitioning>
     <connection>MySQL_Operativna</connection>
-    <sql>SELECT 
-	p.IdKor, 
-	TIMESTAMP(CONCAT(
-		DATE_FORMAT(Datum, '%Y-%m-%d'), 
-		' ', 
-		TIME_FORMAT(Vreme, '%H:%i:%s')
-	)) as DatumVreme,  
-	p.PlacenaCena
-FROM pretplata p
-</sql>
+    <sql>SELECT IdAud, Trajanje
+FROM audio
+WHERE PoslednjaIzmena > (
+	SELECT MAX(Timestamp)
+	FROM audio_snimci_skladiste.poslednja_izmena
+)</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -833,254 +652,15 @@ FROM pretplata p
     <lazy_conversion_active>N</lazy_conversion_active>
     <cached_row_meta_active>N</cached_row_meta_active>
     <row-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>IdKor</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>pretplata_operativna</origin>
-        <comments>IdKor</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>.</decimal_symbol>
-        <grouping_symbol>,</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Belgrade</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Date</type>
-        <storagetype>normal</storagetype>
-        <name>DatumVreme</name>
-        <length>0</length>
-        <precision>-1</precision>
-        <origin>pretplata_operativna</origin>
-        <comments>DatumVreme</comments>
-        <conversion_Mask/>
-        <decimal_symbol>.</decimal_symbol>
-        <grouping_symbol>,</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Belgrade</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>PlacenaCena</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>pretplata_operativna</origin>
-        <comments>PlacenaCena</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>.</decimal_symbol>
-        <grouping_symbol>,</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Belgrade</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-    </row-meta>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>672</xloc>
-      <yloc>80</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>pretplata_skladiste</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>MySQL_Skladiste</connection>
-    <schema>audio_snimci_skladiste</schema>
-    <table>pretplata</table>
-    <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-      <field>
-        <column_name>IdKor</column_name>
-        <stream_name>IdKor</stream_name>
-      </field>
-      <field>
-        <column_name>IdVre</column_name>
-        <stream_name>IdVre</stream_name>
-      </field>
-      <field>
-        <column_name>PlacenaCena</column_name>
-        <stream_name>PlacenaCena</stream_name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>672</xloc>
-      <yloc>352</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>slusanje_operativna</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>MySQL_Operativna</connection>
-    <sql>SELECT 
-	s.IdKor, 
-	s.IdAud, 
-	a.IdKor as IdVla, 
-	TIMESTAMP(CONCAT(
-		DATE_FORMAT(s.Datum, '%Y-%m-%d'), 
-		' ', 
-		TIME_FORMAT(s.Vreme, '%H:%i:%s')
-	)) as DatumVreme,
-	(s.TrajanjeUSekundama - s.PocetniSekund) as Trajanje
-FROM slusanje s join audio a on s.IdAud = a.IdAud</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cached_row_meta_active>N</cached_row_meta_active>
-    <row-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>IdKor</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>slusanje_operativna</origin>
-        <comments>IdKor</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>.</decimal_symbol>
-        <grouping_symbol>,</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Belgrade</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
       <value-meta>
         <type>Integer</type>
         <storagetype>normal</storagetype>
         <name>IdAud</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>slusanje_operativna</origin>
+        <origin>audio_operativna</origin>
         <comments>IdAud</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>.</decimal_symbol>
-        <grouping_symbol>,</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Belgrade</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>IdVla</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>slusanje_operativna</origin>
-        <comments>IdVla</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>.</decimal_symbol>
-        <grouping_symbol>,</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Belgrade</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Date</type>
-        <storagetype>normal</storagetype>
-        <name>DatumVreme</name>
-        <length>0</length>
-        <precision>-1</precision>
-        <origin>slusanje_operativna</origin>
-        <comments>DatumVreme</comments>
-        <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
         <grouping_symbol>,</grouping_symbol>
         <currency_symbol/>
@@ -1099,9 +679,9 @@ FROM slusanje s join audio a on s.IdAud = a.IdAud</sql>
         <type>Integer</type>
         <storagetype>normal</storagetype>
         <name>Trajanje</name>
-        <length>15</length>
+        <length>9</length>
         <precision>0</precision>
-        <origin>slusanje_operativna</origin>
+        <origin>audio_operativna</origin>
         <comments>Trajanje</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>.</decimal_symbol>
@@ -1128,13 +708,267 @@ FROM slusanje s join audio a on s.IdAud = a.IdAud</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
-      <yloc>80</yloc>
+      <xloc>496</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>slusanje_skladiste</name>
+    <name>kategorija_operativna</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>MySQL_Operativna</connection>
+    <sql>SELECT IdKat, Naziv
+FROM kategorija
+WHERE PoslednjaIzmena > (
+	SELECT MAX(Timestamp)
+	FROM audio_snimci_skladiste.poslednja_izmena
+)</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cached_row_meta_active>N</cached_row_meta_active>
+    <row-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>IdKat</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>kategorija_operativna</origin>
+        <comments>IdKat</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>Europe/Belgrade</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>Naziv</name>
+        <length>45</length>
+        <precision>-1</precision>
+        <origin>kategorija_operativna</origin>
+        <comments>Naziv</comments>
+        <conversion_Mask/>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>Europe/Belgrade</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+    </row-meta>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>672</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>vreme_operativna</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>MySQL_Operativna</connection>
+    <sql>SELECT DISTINCT 
+	Datum, 
+	DAY(Datum) AS Dan, 
+	MONTH(Datum) AS Mesec, 
+	YEAR(Datum) AS Godina, 
+	Vreme
+FROM (
+	SELECT Datum, Vreme, PoslednjaIzmena FROM audio
+	UNION
+	SELECT Datum, Vreme, PoslednjaIzmena FROM pretplata
+	UNION
+	SELECT Datum, VReme, PoslednjaIzmena FROM slusanje
+	UNION
+	SELECT Datum, Vreme, PoslednjaIzmena FROM ocena
+) AS Datumi
+WHERE PoslednjaIzmena > (
+	SELECT MAX(Timestamp)
+	FROM audio_snimci_skladiste.poslednja_izmena
+)</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cached_row_meta_active>N</cached_row_meta_active>
+    <row-meta>
+      <value-meta>
+        <type>Date</type>
+        <storagetype>normal</storagetype>
+        <name>Datum</name>
+        <length>-1</length>
+        <precision>-1</precision>
+        <origin>vreme_operativna</origin>
+        <comments>Datum</comments>
+        <conversion_Mask/>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>Europe/Belgrade</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>Dan</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>vreme_operativna</origin>
+        <comments>Dan</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>Europe/Belgrade</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>Mesec</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>vreme_operativna</origin>
+        <comments>Mesec</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>Europe/Belgrade</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>Godina</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>vreme_operativna</origin>
+        <comments>Godina</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>Europe/Belgrade</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Date</type>
+        <storagetype>normal</storagetype>
+        <name>Vreme</name>
+        <length>-1</length>
+        <precision>-1</precision>
+        <origin>vreme_operativna</origin>
+        <comments>Vreme</comments>
+        <conversion_Mask/>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>Europe/Belgrade</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+    </row-meta>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>848</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>korisnik_skladiste</name>
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1146,12 +980,12 @@ FROM slusanje s join audio a on s.IdAud = a.IdAud</sql>
     </partitioning>
     <connection>MySQL_Skladiste</connection>
     <schema>audio_snimci_skladiste</schema>
-    <table>slusanje</table>
+    <table>korisnik</table>
     <commit>1000</commit>
     <truncate>N</truncate>
     <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
+    <use_batch>N</use_batch>
+    <specify_fields>N</specify_fields>
     <partitioning_enabled>N</partitioning_enabled>
     <partitioning_field/>
     <partitioning_daily>N</partitioning_daily>
@@ -1162,26 +996,6 @@ FROM slusanje s join audio a on s.IdAud = a.IdAud</sql>
     <return_keys>N</return_keys>
     <return_field/>
     <fields>
-      <field>
-        <column_name>IdKor</column_name>
-        <stream_name>IdKor</stream_name>
-      </field>
-      <field>
-        <column_name>IdAud</column_name>
-        <stream_name>IdAud</stream_name>
-      </field>
-      <field>
-        <column_name>IdVla</column_name>
-        <stream_name>IdVla</stream_name>
-      </field>
-      <field>
-        <column_name>IdVre</column_name>
-        <stream_name>IdVre</stream_name>
-      </field>
-      <field>
-        <column_name>Trajanje</column_name>
-        <stream_name>Trajanje</stream_name>
-      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -1193,13 +1007,13 @@ FROM slusanje s join audio a on s.IdAud = a.IdAud</sql>
     </remotesteps>
     <GUI>
       <xloc>320</xloc>
-      <yloc>352</yloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>vreme_ocena</name>
-    <type>DBJoin</type>
+    <name>audio_skladiste</name>
+    <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -1209,22 +1023,24 @@ FROM slusanje s join audio a on s.IdAud = a.IdAud</sql>
       <schema_name/>
     </partitioning>
     <connection>MySQL_Skladiste</connection>
-    <rowlimit>1</rowlimit>
-    <sql>SELECT IdVre
-FROM vreme
-WHERE TIMESTAMP(CONCAT(
-		DATE_FORMAT(Datum, '%Y-%m-%d'), 
-		' ', 
-		TIME_FORMAT(Vreme, '%H:%i:%s')
-	)) = ?</sql>
-    <outer_join>N</outer_join>
-    <replace_vars>N</replace_vars>
-    <parameter>
-      <field>
-        <name>DatumVreme</name>
-        <type>None</type>
-      </field>
-    </parameter>
+    <schema>audio_snimci_skladiste</schema>
+    <table>audio</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>N</use_batch>
+    <specify_fields>N</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+    </fields>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -1235,13 +1051,13 @@ WHERE TIMESTAMP(CONCAT(
     </remotesteps>
     <GUI>
       <xloc>496</xloc>
-      <yloc>208</yloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>vreme_pretplata</name>
-    <type>DBJoin</type>
+    <name>kategorija_skladiste</name>
+    <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -1251,22 +1067,24 @@ WHERE TIMESTAMP(CONCAT(
       <schema_name/>
     </partitioning>
     <connection>MySQL_Skladiste</connection>
-    <rowlimit>1</rowlimit>
-    <sql>SELECT IdVre
-FROM vreme
-WHERE TIMESTAMP(CONCAT(
-		DATE_FORMAT(Datum, '%Y-%m-%d'), 
-		' ', 
-		TIME_FORMAT(Vreme, '%H:%i:%s')
-	)) = ?</sql>
-    <outer_join>N</outer_join>
-    <replace_vars>N</replace_vars>
-    <parameter>
-      <field>
-        <name>DatumVreme</name>
-        <type>None</type>
-      </field>
-    </parameter>
+    <schema>audio_snimci_skladiste</schema>
+    <table>kategorija</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>N</use_batch>
+    <specify_fields>N</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+    </fields>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -1277,13 +1095,13 @@ WHERE TIMESTAMP(CONCAT(
     </remotesteps>
     <GUI>
       <xloc>672</xloc>
-      <yloc>208</yloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>vreme_slusanje</name>
-    <type>DBJoin</type>
+    <name>vreme_skladiste</name>
+    <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -1293,22 +1111,24 @@ WHERE TIMESTAMP(CONCAT(
       <schema_name/>
     </partitioning>
     <connection>MySQL_Skladiste</connection>
-    <rowlimit>1</rowlimit>
-    <sql>SELECT IdVre
-FROM vreme
-WHERE TIMESTAMP(CONCAT(
-		DATE_FORMAT(Datum, '%Y-%m-%d'), 
-		' ', 
-		TIME_FORMAT(Vreme, '%H:%i:%s')
-	)) = ?</sql>
-    <outer_join>N</outer_join>
-    <replace_vars>N</replace_vars>
-    <parameter>
-      <field>
-        <name>DatumVreme</name>
-        <type>None</type>
-      </field>
-    </parameter>
+    <schema>audio_snimci_skladiste</schema>
+    <table>vreme</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>N</use_batch>
+    <specify_fields>N</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+    </fields>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -1318,8 +1138,8 @@ WHERE TIMESTAMP(CONCAT(
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
-      <yloc>208</yloc>
+      <xloc>848</xloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
