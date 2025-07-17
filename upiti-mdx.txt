@@ -1,0 +1,7 @@
+1. Broj minuta slušanja audio snimka po polu, uzrastu, mestu korisnika koji je slušao
+audio snimak
+
+2. Prosečnu ocenu za svaku kategoriju audio snimka, za svako mesto korisnika koji je
+vlasnik audio snimka
+
+3. Iznos pretplata po polu, uzrastu, mestu korisnika koji je platio pretplatu
