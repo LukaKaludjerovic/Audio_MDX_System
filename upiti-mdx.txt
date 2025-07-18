@@ -1,7 +1,74 @@
-1. Broj minuta slušanja audio snimka po polu, uzrastu, mestu korisnika koji je slušao
-audio snimak
+1. Broj minuta slušanja audio snimka po polu, uzrastu, mestu korisnika koji je slušao audio snimak
 
-2. Prosečnu ocenu za svaku kategoriju audio snimka, za svako mesto korisnika koji je
-vlasnik audio snimka
+    1.1. Zajedno po polu, uzrastu i mestu korisnika
+        SELECT 
+            Measures.Trajanje ON COLUMNS, 
+            NON EMPTY Korisnik.Members ON ROWS
+        FROM Slusanja
+
+    1.2. Odvojeno po polu korisnika
+        SELECT 
+            Measures.Trajanje ON COLUMNS, 
+            NON EMPTY Korisnik.Pol.Members ON ROWS
+        FROM Slusanja
+
+    1.3. Odvojeno po polu i uzrastu korisnika
+        SELECT 
+            Measures.Trajanje ON COLUMNS, 
+            NON EMPTY Korisnik.Godiste.Members ON ROWS
+        FROM Slusanja
+
+    1.4. Odvojeno po polu, uzrastu i mestu korisnika
+        SELECT 
+            Measures.Trajanje ON COLUMNS, 
+            NON EMPTY Korisnik.Mesto.Members ON ROWS
+        FROM Slusanja
+
+2. Prosečnu ocenu za svaku kategoriju audio snimka, za svako mesto korisnika koji je vlasnik audio snimka
+
+    2.1. Zajedno za svaku kategoriju i mestu vlasnika audio snimka
+        SELECT
+            Measures.[Prosecna ocena] ON COLUMNS,
+            NON EMPTY CROSSJOIN(
+                Kategorija.Naziv.Members,
+                Vlasnik.Mesto.Members
+            ) ON ROWS
+        FROM Ocene
+
+    2.2. Odvojeno po kategoriji audio snimka
+        SELECT
+            Measures.[Prosecna ocena] ON COLUMNS,
+            NON EMPTY Kategorija.Naziv.Members ON ROWS
+        FROM Ocene
+
+    2.3. Odvojeno po mestu vlasnika audio snimka
+        SELECT
+            Measures.[Prosecna ocena] ON COLUMNS,
+            NON EMPTY Vlasnik.Mesto.Members ON ROWS
+        FROM Ocene
 
 3. Iznos pretplata po polu, uzrastu, mestu korisnika koji je platio pretplatu
+
+    3.1. Zajedno po polu, uzrastu i mestu korisnika
+        SELECT
+            Measures.[Ukupna cena] ON COLUMNS,
+            NON EMPTY Korisnik.Members ON ROWS
+        FROM Pretplate
+
+    3.2. Odvojeno po polu korisnika
+        SELECT
+            Measures.[Ukupna cena] ON COLUMNS,
+            NON EMPTY Korisnik.Pol.Members ON ROWS
+        FROM Pretplate
+
+    3.3. Odvojeno po polu i uzrastu korisnika
+        SELECT
+            Measures.[Ukupna cena] ON COLUMNS,
+            NON EMPTY Korisnik.Godiste.Members ON ROWS
+        FROM Pretplate
+
+    3.4. Odvojeno po polu, uzrastu i mestu korisnika
+        SELECT
+            Measures.[Ukupna cena] ON COLUMNS,
+            NON EMPTY Korisnik.Mesto.Members ON ROWS
+        FROM Pretplate
