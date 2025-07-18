@@ -550,74 +550,6 @@
     </hop>
   </order>
   <step>
-    <name>ocena_skladiste</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>MySQL_Skladiste</connection>
-    <schema/>
-    <table>ocena</table>
-    <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-      <field>
-        <column_name>IdKor</column_name>
-        <stream_name>IdKor</stream_name>
-      </field>
-      <field>
-        <column_name>IdAud</column_name>
-        <stream_name>IdAud</stream_name>
-      </field>
-      <field>
-        <column_name>IdVla</column_name>
-        <stream_name>IdVla</stream_name>
-      </field>
-      <field>
-        <column_name>IdKat</column_name>
-        <stream_name>IdKat</stream_name>
-      </field>
-      <field>
-        <column_name>IdVre</column_name>
-        <stream_name>IdVre</stream_name>
-      </field>
-      <field>
-        <column_name>Ocena</column_name>
-        <stream_name>Ocena</stream_name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>496</xloc>
-      <yloc>352</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>ocena_operativna</name>
     <type>TableInput</type>
     <description/>
@@ -801,6 +733,74 @@ FROM ocena o
     <GUI>
       <xloc>496</xloc>
       <yloc>80</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>ocena_skladiste</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>MySQL_Skladiste</connection>
+    <schema/>
+    <table>ocena</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>IdKor</column_name>
+        <stream_name>IdKor</stream_name>
+      </field>
+      <field>
+        <column_name>IdAud</column_name>
+        <stream_name>IdAud</stream_name>
+      </field>
+      <field>
+        <column_name>IdVla</column_name>
+        <stream_name>IdVla</stream_name>
+      </field>
+      <field>
+        <column_name>IdKat</column_name>
+        <stream_name>IdKat</stream_name>
+      </field>
+      <field>
+        <column_name>IdVre</column_name>
+        <stream_name>IdVre</stream_name>
+      </field>
+      <field>
+        <column_name>Ocena</column_name>
+        <stream_name>Ocena</stream_name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>496</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -994,7 +994,7 @@ FROM pretplata p
 		' ', 
 		TIME_FORMAT(s.Vreme, '%H:%i:%s')
 	)) as DatumVreme,
-	(s.TrajanjeUSekundama - s.PocetniSekund) as Trajanje
+	CEIL((s.TrajanjeUSekundama - s.PocetniSekund) / 60.0) as Trajanje
 FROM slusanje s join audio a on s.IdAud = a.IdAud</sql>
     <limit>0</limit>
     <lookup/>
