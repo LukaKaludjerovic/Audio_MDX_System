@@ -1,68 +1,80 @@
 <Schema name="audio_snimci">
   <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Vreme">
-    <Hierarchy name="New Hierarchy 0" visible="true" hasAll="true" primaryKey="IdVre">
+    <Hierarchy name="Datumi" visible="true" hasAll="true" primaryKey="IdVre">
       <Table name="vreme">
       </Table>
       <Level name="Datum" visible="true" table="vreme" column="Datum" type="Date" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" captionColumn="Datum">
       </Level>
+    </Hierarchy>
+    <Hierarchy name="Vremena" visible="true" hasAll="true" primaryKey="IdVre">
+      <Table name="vreme" alias="">
+      </Table>
       <Level name="Vreme" visible="true" table="vreme" column="Vreme" type="Time" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" captionColumn="Vreme">
       </Level>
     </Hierarchy>
   </Dimension>
-  <Dimension type="StandardDimension" visible="true" name="Korisnik">
-    <Hierarchy name="New Hierarchy 0" visible="true" hasAll="true" primaryKey="IdKor">
-      <Table name="korisnik" alias="">
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Korisnik">
+    <Hierarchy name="Polovi" visible="true" hasAll="true" primaryKey="IdKor">
+      <Table name="korisnik">
       </Table>
       <Level name="Pol" visible="true" table="korisnik" column="Pol" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" captionColumn="Pol">
       </Level>
+    </Hierarchy>
+    <Hierarchy name="Godista" visible="true" hasAll="true" primaryKey="IdKor">
+      <Table name="korisnik">
+      </Table>
       <Level name="Godiste" visible="true" table="korisnik" column="Godiste" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" captionColumn="Godiste">
       </Level>
+    </Hierarchy>
+    <Hierarchy name="Mesta" visible="true" hasAll="true" primaryKey="IdKor">
+      <Table name="korisnik">
+      </Table>
       <Level name="Mesto" visible="true" table="korisnik" column="Mesto" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" captionColumn="Mesto">
       </Level>
     </Hierarchy>
   </Dimension>
-  <Dimension type="StandardDimension" visible="true" name="Audio">
-    <Hierarchy name="New Hierarchy 0" visible="true" hasAll="true" primaryKey="IdAud">
-      <Table name="audio" alias="">
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Audio">
+    <Hierarchy name="Trajanja" visible="true" hasAll="true" primaryKey="IdAud">
+      <Table name="audio">
       </Table>
       <Level name="Trajanje" visible="true" table="audio" column="Trajanje" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" captionColumn="Trajanje">
       </Level>
     </Hierarchy>
   </Dimension>
-  <Dimension type="StandardDimension" visible="true" name="Kategorija">
-    <Hierarchy name="New Hierarchy 0" visible="true" hasAll="true" primaryKey="IdKat">
-      <Table name="kategorija" alias="">
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Kategorija">
+    <Hierarchy name="Nazivi" visible="true" hasAll="true" primaryKey="IdKat">
+      <Table name="kategorija">
       </Table>
       <Level name="Naziv" visible="true" table="kategorija" column="Naziv" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" captionColumn="Naziv">
       </Level>
     </Hierarchy>
   </Dimension>
   <Cube name="Slusanja" visible="true" cache="true" enabled="true">
-    <Table name="slusanje" alias="">
+    <Table name="slusanje">
     </Table>
-    <DimensionUsage source="Vreme" name="Vreme" visible="true" foreignKey="IdVre">
+    <DimensionUsage source="Vreme" name="Vreme" visible="true" foreignKey="IdVre" highCardinality="false">
     </DimensionUsage>
-    <DimensionUsage source="Audio" name="Audio" visible="true" foreignKey="IdAud">
+    <DimensionUsage source="Audio" name="Audio" visible="true" foreignKey="IdAud" highCardinality="false">
     </DimensionUsage>
-    <DimensionUsage source="Korisnik" name="Korisnik" visible="true" foreignKey="IdKor">
+    <DimensionUsage source="Korisnik" name="Korisnik" visible="true" foreignKey="IdKor" highCardinality="false">
     </DimensionUsage>
-    <DimensionUsage source="Korisnik" name="Vlasnik" visible="true" foreignKey="IdVla">
+    <DimensionUsage source="Korisnik" name="Vlasnik" visible="true" foreignKey="IdVla" highCardinality="false">
     </DimensionUsage>
     <Measure name="Trajanje" column="Trajanje" aggregator="sum" visible="true">
     </Measure>
   </Cube>
   <Cube name="Ocene" visible="true" cache="true" enabled="true">
-    <Table name="ocena" alias="">
+    <Table name="ocena">
     </Table>
-    <DimensionUsage source="Korisnik" name="Korisnik" visible="true" foreignKey="IdKor">
+    <DimensionUsage source="Korisnik" name="Korisnik" visible="true" foreignKey="IdKor" highCardinality="false">
     </DimensionUsage>
-    <DimensionUsage source="Audio" name="Audio" visible="true" foreignKey="IdAud">
+    <DimensionUsage source="Audio" name="Audio" visible="true" foreignKey="IdAud" highCardinality="false">
     </DimensionUsage>
-    <DimensionUsage source="Korisnik" name="Vlasnik" visible="true" foreignKey="IdVla">
+    <DimensionUsage source="Korisnik" name="Vlasnik" visible="true" foreignKey="IdVla" highCardinality="false">
     </DimensionUsage>
-    <DimensionUsage source="Kategorija" name="Kategorija" visible="true" foreignKey="IdKat">
+    <DimensionUsage source="Kategorija" name="Kategorija" visible="true" foreignKey="IdKat" highCardinality="false">
     </DimensionUsage>
-    <DimensionUsage source="Vreme" name="Vreme" visible="true" foreignKey="IdVre">
+    <DimensionUsage source="Vreme" name="Vreme" visible="true" foreignKey="IdVre" highCardinality="false">
     </DimensionUsage>
     <Measure name="Broj ocena" column="IdOce" aggregator="count" visible="true">
     </Measure>
@@ -70,11 +82,11 @@
     </Measure>
   </Cube>
   <Cube name="Pretplate" visible="true" cache="true" enabled="true">
-    <Table name="pretplata" alias="">
+    <Table name="pretplata">
     </Table>
-    <DimensionUsage source="Korisnik" name="Korisnik" visible="true" foreignKey="IdKor">
+    <DimensionUsage source="Korisnik" name="Korisnik" visible="true" foreignKey="IdKor" highCardinality="false">
     </DimensionUsage>
-    <DimensionUsage source="Vreme" name="Vreme" visible="true" foreignKey="IdVre">
+    <DimensionUsage source="Vreme" name="Vreme" visible="true" foreignKey="IdVre" highCardinality="false">
     </DimensionUsage>
     <Measure name="Ukupna cena" column="PlacenaCena" aggregator="sum" visible="true">
     </Measure>
